@@ -1,0 +1,21 @@
+imports:
+  - path: network.py
+  - path: instances.py
+
+resources:
+- name: network
+  type: network.py
+  properties:
+    region: us-central1
+    subnets:
+      - range: 10.177.0.0/17
+        name: web
+      - range: 10.177.128.0/17
+        name: data
+
+- name: web-instance
+  type: instances.py
+  properties:
+    zone: us-central1-a
+    machineType: n1-standard-1
+    subnetwork: data
